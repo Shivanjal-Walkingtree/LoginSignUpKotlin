@@ -1,22 +1,21 @@
 package com.example.login_registration_app_kt
 
+import android.content.Context
 import android.content.Intent
-import android.graphics.Typeface
 import android.os.Bundle
-import android.provider.ContactsContract.CommonDataKinds.Email
-import android.util.Log
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
-
-    lateinit var name : TextView
-    lateinit var fullname : TextView
+    lateinit var name: TextView
+    lateinit var fullname: TextView
     lateinit var email: TextView
-    lateinit var userId : TextView
-    lateinit var role : TextView
-    lateinit var nmtx : TextView
+    lateinit var userId: TextView
+    lateinit var role: TextView
+    lateinit var nmtx: TextView
+    lateinit var buttonLogout: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +28,8 @@ class MainActivity : AppCompatActivity() {
         userId = findViewById(R.id.userid)
         nmtx = findViewById(R.id.nametext)
 
+        buttonLogout = findViewById(R.id.button_logout)
+
 
         val intent = intent
         if (intent.extras != null) {
@@ -36,27 +37,32 @@ class MainActivity : AppCompatActivity() {
             if (extras != null) {
                 val signInResponse = extras.getSerializable("signInResponse") as SignInResponse?
                 signInResponse?.let {
-                    name.text = signInResponse.data?.fullName
-                    fullname.text = signInResponse.data?.fullName
-                    nmtx.text = signInResponse.data?.fullName
-                    email.text = signInResponse.data?.email
-                    role.text = signInResponse.data?.role
-                    userId.text = signInResponse.data?.userId
+                    // Log the data being received
 
-
-                    Log.e("TAG", "====> ${it.data?.fullName}")
+                    name.text = it.data?.fullName ?: "N/A"
+                    fullname.text = it.data?.fullName ?: "N/A"
+                    nmtx.text = it.data?.fullName ?: "N/A"
+                    email.text = it.data?.email ?: "N/A"
+                    role.text = it.data?.role ?: "N/A"
+                    userId.text = it.data?.userId ?: "N/A"
                 }
             }
         }
 
+        buttonLogout.setOnClickListener {
 
+            // Clear SharedPreferences
+            val sharedPreferences = getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
+            editor.clear()
+            editor.apply()
 
-//        val intent = Intent()
-//        if (intent.extras!= null) {
-//            val signInResponse = intent.getSerializableExtra("data") as SignInResponse
-//            message.setText(signInResponse.message)
-//            Log.e("TAG","====> "+signInResponse.message)
-//
-//        }
+            // Redirect to login screen
+            val loginIntent = Intent(this@MainActivity, Login::class.java)
+            loginIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            loginIntent.putExtra("logout", true)
+            startActivity(loginIntent)
+            finish()
+        }
     }
 }

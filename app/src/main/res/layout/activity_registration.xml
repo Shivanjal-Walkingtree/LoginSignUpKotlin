@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
     android:background="@drawable/loginbkg"
     tools:context=".Registration">
 
@@ -15,6 +14,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
         app:cardCornerRadius="30dp"
+        android:background="@drawable/white_background"
+        android:layout_gravity="center"
         app:cardElevation="20dp">
 
         <LinearLayout
@@ -23,6 +24,7 @@
             android:orientation="vertical"
             android:layout_gravity="center_horizontal"
             android:padding="24dp"
+            android:backgroundTint="@color/white"
             android:background="@drawable/custom_edittext">
 
             <TextView
@@ -51,7 +53,7 @@
                 android:layout_height="50dp"
                 android:id="@+id/email_signup"
                 android:background="@drawable/custom_edittext"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="20dp"
                 android:padding="8dp"
                 android:hint="Email"
                 android:drawableLeft="@drawable/baseline_alternate_email_24"
@@ -59,25 +61,37 @@
                 android:drawablePadding="8dp"/>
 
 
-            <EditText
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/TextInputLayout"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:id="@+id/password_signup"
-                android:background="@drawable/custom_edittext"
-                android:layout_marginTop="20dp"
-                android:inputType="textPassword"
-                android:padding="8dp"
-                android:hint="Password"
-                android:drawableLeft="@drawable/baseline_password_24"
-                android:textColor="@color/black"
-                android:drawablePadding="8dp"/>
+                android:layout_height="wrap_content"
+                app:endIconMode="password_toggle"
+                app:endIconTint="@color/lavender"
+                app:startIconDrawable="@drawable/baseline_password_24"
+                app:helperTextEnabled="true"
+                app:helperText="Enter Password"
+                app:helperTextTextColor="@color/lavender"
+                android:layout_marginTop="20dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:id="@+id/password_signup"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/custom_edittext"
+                    android:inputType="textPassword"
+                    android:padding="8dp"
+                    android:textColor="@color/black"
+                    android:drawablePadding="8dp"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:id="@+id/role_signup"
                 android:background="@drawable/custom_edittext"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="20dp"
                 android:padding="8dp"
                 android:hint="Role"
                 android:drawableLeft="@drawable/baseline_person_24"
@@ -105,10 +119,18 @@
                 android:textStyle="bold"
                 android:textColor="@color/lavender"/>
 
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_centerInParent="true"
+                android:visibility="gone" />
+
 
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 
 
-</LinearLayout>
+</ScrollView>
