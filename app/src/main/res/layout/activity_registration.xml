@@ -68,10 +68,16 @@
                 app:endIconMode="password_toggle"
                 app:endIconTint="@color/lavender"
                 app:startIconDrawable="@drawable/baseline_password_24"
-                app:helperTextEnabled="true"
-                app:helperText="Enter Password"
-                app:helperTextTextColor="@color/lavender"
+                app:boxBackgroundMode="none"
                 android:layout_marginTop="20dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/password_error"
+                    android:text="Enter password"
+                    android:textColor="@color/red"
+                    android:textSize="12dp"/>
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"

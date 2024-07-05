@@ -55,6 +55,7 @@
                 app:endIconMode="password_toggle"
                 app:helperTextEnabled="true"
                 app:helperText="Enter Password"
+                app:boxBackgroundMode="none"
                 app:helperTextTextColor="@color/lavender"
                 app:endIconTint="@color/lavender"
                 android:layout_marginTop="20dp">

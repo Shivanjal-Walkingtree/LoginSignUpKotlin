@@ -93,7 +93,7 @@ class Login : AppCompatActivity() {
                     editor.putString("password", password)
                     editor.apply()
 
-                    val intent = Intent(this@Login, MainActivity::class.java)
+                    val intent = Intent(this@Login, HomePage::class.java)
                     intent.putExtra("signInResponse", signInResponse)
                     startActivity(intent)
                     finish()
