@@ -8,4 +8,13 @@
     <style name="Theme.Login_Registration_App_kt" parent="Base.Theme.Login_Registration_App_kt" />
 
 
+    <style name="DialogAnimation">
+
+        <item name="android:windowEnterAnimation">@anim/slide_in_animation</item>
+        <item name="android:windowExitAnimation">@anim/slide_out_animation</item>
+
+    </style>
+
+
+
 </resources>
