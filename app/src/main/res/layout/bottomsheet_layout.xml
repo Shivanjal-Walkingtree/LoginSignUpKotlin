@@ -51,7 +51,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/baseline_home_24"/>
+            android:src="@drawable/home_24"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -85,4 +85,29 @@
             android:textSize="16sp"/>
 
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/logout"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_logout_24"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Logout"
+            android:textColor="@color/lavender"
+            android:layout_marginLeft="30dp"
+            android:textSize="16sp"/>
+
+    </LinearLayout>
+
+
  </LinearLayout>

@@ -1,6 +1,8 @@
 package com.example.login_registration_app_kt
 
 import android.app.Dialog
+import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -16,6 +18,7 @@ import androidx.fragment.app.commit
 import com.example.login_registration_app_kt.databinding.ActivityHomePageBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlin.math.log
 
 class HomePage : AppCompatActivity() {
 
@@ -72,16 +75,31 @@ class HomePage : AppCompatActivity() {
 
         val home = dialog.findViewById<LinearLayout>(R.id.home)
         val me = dialog.findViewById<LinearLayout>(R.id.me)
+        val logout = dialog.findViewById<LinearLayout>(R.id.logout)
         val cancelButton = dialog.findViewById<ImageView>(R.id.cancelButton)
 
         home.setOnClickListener {
             dialog.dismiss()
-            Toast.makeText(this, "Upload a Video is clicked", Toast.LENGTH_SHORT).show()
+            supportFragmentManager.commit {
+                replace(R.id.frame_layout, HomeFragment())
+            }
         }
 
         me.setOnClickListener {
             dialog.dismiss()
-            Toast.makeText(this, "Create a short is clicked", Toast.LENGTH_SHORT).show()
+            supportFragmentManager.commit {
+                replace(R.id.frame_layout, MeFragment())
+            }
+        }
+
+        logout.setOnClickListener {
+            dialog.dismiss()
+            val sharedPreferences = getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
+            editor.clear()
+            editor.apply()
+            startActivity(Intent(this@HomePage, Login::class.java))
+            finish()
         }
 
         cancelButton.setOnClickListener {
@@ -94,7 +112,4 @@ class HomePage : AppCompatActivity() {
         dialog.window?.attributes?.windowAnimations = R.style.DialogAnimation
         dialog.window?.setGravity(Gravity.BOTTOM)
     }
-
-
-
 }
